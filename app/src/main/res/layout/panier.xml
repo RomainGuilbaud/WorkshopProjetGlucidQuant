@@ -20,7 +20,7 @@
         android:layout_gravity="center"
         android:textColor="#36007F"
         android:layout_marginTop="10dp"
-        android:text="Taux de glucide lente:0" />
+        android:text="Total de glucide lente:0g" />
         <ProgressBar
             android:id="@+id/pGL"
             style="?android:attr/progressBarStyleHorizontal"
@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:textColor="#36007F"
-        android:text="Taux de glucide rapide:0" />
+        android:text="Total de glucide rapide:0g" />
     <ProgressBar
         android:id="@+id/pGR"
         style="?android:attr/progressBarStyleHorizontal"

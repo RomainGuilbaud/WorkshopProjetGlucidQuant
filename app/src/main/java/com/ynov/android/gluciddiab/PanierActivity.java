@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -18,6 +19,8 @@ public class PanierActivity extends AppCompatActivity {
     ListView mListView;
     private ProgressBar mProgressBar1;
     private ProgressBar mProgressBar2;
+    private TextView textTGR;
+    private TextView textTGL;
     private RadioButton mRadio;
     String[] prenoms = new String[]{
             "Big Mac Maxi", "frite Maxi", "coca-cola", "sunday"
@@ -37,8 +40,10 @@ public class PanierActivity extends AppCompatActivity {
         mProgressBar1.setMax(15);
         mProgressBar2 = (ProgressBar) findViewById(R.id.pGR);
         mProgressBar2.setMax(10);
+        textTGL = (TextView) findViewById(R.id.textTGL);
+        textTGR = (TextView) findViewById(R.id.textTGR);
         Customlistview adapter = new
-                Customlistview(PanierActivity.this,prenoms,gr,gl,mProgressBar1,mProgressBar2);
+                Customlistview(PanierActivity.this,prenoms,gr,gl,mProgressBar1,mProgressBar2,textTGL,textTGR);
         mListView = (ListView) findViewById(R.id.listView);
         mListView.setAdapter(adapter);
 
