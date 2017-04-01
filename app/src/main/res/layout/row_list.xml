@@ -1,6 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
+    android:layout_height="fill_parent"
+    android:descendantFocusability="blocksDescendants">
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -37,27 +38,27 @@
             android:textColor="#404040"
             android:textSize="20sp" />
         <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/radio"
+            android:id="@+id/radioP"
             android:layout_width="fill_parent"
             android:layout_below="@+id/textViewGR"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-            <RadioButton android:id="@+id/radio_1"
+            <RadioButton android:id="@+id/radioP_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1/4"
                 android:onClick="onRadioButtonClicked"/>
-            <RadioButton android:id="@+id/radio_2"
+            <RadioButton android:id="@+id/radioP_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1/2"
                 android:onClick="onRadioButtonClicked"/>
-            <RadioButton android:id="@+id/radio_3"
+            <RadioButton android:id="@+id/radioP_3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="3/4"
                 android:onClick="onRadioButtonClicked"/>
-            <RadioButton android:id="@+id/radio_4"
+            <RadioButton android:id="@+id/radioP_4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1"
