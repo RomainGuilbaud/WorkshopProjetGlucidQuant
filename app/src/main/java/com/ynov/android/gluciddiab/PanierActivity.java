@@ -22,19 +22,23 @@ public class PanierActivity extends AppCompatActivity {
     String[] prenoms = new String[]{
             "Big Mac Maxi", "frite Maxi", "coca-cola", "sunday"
     };
-    String[] gr = new String[]{
-            "2g", "3g", "4g", "3g"
+    int[] gr = new int[]{
+            2, 3, 4, 3
     };
-    String[] gl = new String[]{
-            "6g", "7g", "5g", "6g"
+    int[] gl = new int[]{
+            6,7,5,6
     };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.panier);
+        mProgressBar1 = (ProgressBar) findViewById(R.id.pGL);
+        mProgressBar1.setMax(15);
+        mProgressBar2 = (ProgressBar) findViewById(R.id.pGR);
+        mProgressBar2.setMax(10);
         Customlistview adapter = new
-                Customlistview(PanierActivity.this,prenoms,gr,gl);
+                Customlistview(PanierActivity.this,prenoms,gr,gl,mProgressBar1,mProgressBar2);
         mListView = (ListView) findViewById(R.id.listView);
         mListView.setAdapter(adapter);
 
