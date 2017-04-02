@@ -7,21 +7,18 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <!--<activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>-->
-        <activity android:name=".PanierActivity">
+        android:theme="@style/Theme.AppCompat.NoActionBar">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ProtocoleActivity" android:configChanges="orientation|screenSize"></activity>
+        <activity android:name=".RestoActivity" android:configChanges="orientation|screenSize"></activity>
+        <activity android:name=".MenuActivity" android:configChanges="orientation|screenSize"></activity>
+        <activity android:name=".PanierActivity" android:configChanges="orientation|screenSize"></activity>
     </application>
 
 </manifest>
