@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +22,8 @@ public class PanierActivity extends AppCompatActivity {
     private ProgressBar mProgressBar2;
     private TextView textTGR;
     private TextView textTGL;
+    private TextView textMaxTGR;
+    private TextView textMaxTGL;
     private RadioButton mRadio;
     String[] prenoms = new String[]{
             "Big Mac Maxi", "frite Maxi", "coca-cola", "sunday"
@@ -42,6 +45,8 @@ public class PanierActivity extends AppCompatActivity {
         mProgressBar2.setMax(10);
         textTGL = (TextView) findViewById(R.id.textTGL);
         textTGR = (TextView) findViewById(R.id.textTGR);
+        textMaxTGL = (TextView) findViewById(R.id.textMaxTGL);
+        textMaxTGR = (TextView) findViewById(R.id.textMaxTGR);
         Customlistview adapter = new
                 Customlistview(PanierActivity.this,prenoms,gr,gl,mProgressBar1,mProgressBar2,textTGL,textTGR);
         mListView = (ListView) findViewById(R.id.listView);
@@ -49,8 +54,10 @@ public class PanierActivity extends AppCompatActivity {
 
         mProgressBar1 = (ProgressBar) findViewById(R.id.pGL);
         mProgressBar1.setMax(15);
+        textMaxTGL.setText("Max "+15*1+"g");
         mProgressBar2 = (ProgressBar) findViewById(R.id.pGR);
         mProgressBar2.setMax(10);
+        textMaxTGR.setText("Max "+10*1+"g");
 
         mRadio = (RadioButton) findViewById(R.id.radio_1);
         mRadio.setChecked(true);
@@ -75,21 +82,29 @@ public class PanierActivity extends AppCompatActivity {
                 if (checked)
                     mProgressBar1.setMax((int)(15*1));
                     mProgressBar2.setMax((int)(10*1));
+                    textMaxTGL.setText("Max "+15*1+"g");
+                    textMaxTGR.setText("Max "+10*1+"g");
                 break;
             case R.id.radio_2:
                 if (checked)
                     mProgressBar1.setMax((int)(15*1.5));
                     mProgressBar2.setMax((int)(10*1.5));
+                    textMaxTGL.setText("Max "+15*1.5+"g");
+                    textMaxTGR.setText("Max "+10*1.5+"g");
                 break;
             case R.id.radio_3:
                 if (checked)
                     mProgressBar1.setMax((int)(15*2));
                     mProgressBar2.setMax((int)(10*2));
+                    textMaxTGL.setText("Max "+15*2+"g");
+                    textMaxTGR.setText("Max "+10*2+"g");
                 break;
             case R.id.radio_4:
                 if (checked)
                     mProgressBar1.setMax((int)(15*3));
                     mProgressBar2.setMax((int)(10*3));
+                    textMaxTGL.setText("Max "+15*3+"g");
+                    textMaxTGR.setText("Max "+10*3+"g");
                 break;
         }
     }

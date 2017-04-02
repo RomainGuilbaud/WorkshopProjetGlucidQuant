@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
@@ -57,36 +58,126 @@ public class Customlistview extends ArrayAdapter<String>{
         TextView txtTitle = (TextView) rowView.findViewById(R.id.textViewName);
         TextView txtTitle1 = (TextView) rowView.findViewById(R.id.textViewGL);
         TextView txtTitle2 = (TextView) rowView.findViewById(R.id.textViewGR);
-        RadioGroup radio = (RadioGroup) rowView.findViewById(R.id.radioP);
+        final RadioGroup radio = (RadioGroup) rowView.findViewById(R.id.radioP);
+        mSwitch= (Switch)rowView.findViewById(R.id.toggle1);
         txtTitle.setText(textName[position]);
         txtTitle1.setText("glucide rapide: "+textGR[position]+"g");
         txtTitle2.setText("glucide lent: "+ textGL[position]+"g");
+        textGLActuel[position]=(textGL[position]*(1));
+        textGRActuel[position]=(textGR[position]*(1));
+        int i = 0;
+        double sum=0;
+        while(i < textGLActuel.length) {
+            sum += textGLActuel[i];
+            i++;
+        }
+        textViewGL.setText("Total de glucide lente:"+ sum+"g");
+        mProgressBar1.setProgress((int)(sum));
+        i = 0;
+        sum=0;
+        while(i < textGRActuel.length) {
+            sum += textGRActuel[i];
+            i++;
+        }
+
+        textViewGR.setText("Total de glucide rapide:"+sum+"g");
+        mProgressBar2.setProgress((int)(sum));
+
+        mSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(!isChecked){
+                    for (int i = 0; i < radio.getChildCount(); i++) {
+                        radio.getChildAt(i).setEnabled(false);
+                    }
+                    textGLActuel[position]=0;
+                    textGRActuel[position]=0;
+                    int i = 0;
+                    double sum=0;
+                    while(i < textGLActuel.length) {
+                        sum += textGLActuel[i];
+                        i++;
+                    }
+                    textViewGL.setText("Total de glucide lente:"+ sum+"g");
+                    mProgressBar1.setProgress((int)(sum));
+                    i = 0;
+                    sum=0;
+                    while(i < textGRActuel.length) {
+                        sum += textGRActuel[i];
+                        i++;
+                    }
+
+                    textViewGR.setText("Total de glucide rapide:"+sum+"g");
+                    mProgressBar2.setProgress((int)(sum));
+                }else{
+                    for (int i = 0; i < radio.getChildCount(); i++) {
+                        radio.getChildAt(i).setEnabled(true);
+                    }
+                    switch (radio.getCheckedRadioButtonId()){
+                        case R.id.radioP_1:
+                            textGLActuel[position]=(textGL[position]*(0.25));
+                            textGRActuel[position]=(textGR[position]*(0.25));
+                            break;
+                        case R.id.radioP_2:
+                            textGLActuel[position]=(textGL[position]*(0.5));
+                            textGRActuel[position]=(textGR[position]*(0.5));
+                            break;
+                        case R.id.radioP_3:
+                            textGLActuel[position]=(textGL[position]*(0.75));
+                            textGRActuel[position]=(textGR[position]*(0.75));
+                            break;
+                        case R.id.radioP_4:
+                            textGLActuel[position]=(textGL[position]*(1));
+                            textGRActuel[position]=(textGR[position]*(1));
+                            break;
+                        default:
+                            break;
+                    }
+                    int i = 0;
+                    double sum=0;
+                    while(i < textGLActuel.length) {
+                        sum += textGLActuel[i];
+                        i++;
+                    }
+                    textViewGL.setText("Total de glucide lente:"+ sum+"g");
+                    mProgressBar1.setProgress((int)(sum));
+                    i = 0;
+                    sum=0;
+                    while(i < textGRActuel.length) {
+                        sum += textGRActuel[i];
+                        i++;
+                    }
+
+                    textViewGR.setText("Total de glucide rapide:"+sum+"g");
+                    mProgressBar2.setProgress((int)(sum));
+                }
+            }
+        });
 
         radio.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId) {
                     case R.id.radioP_1:
-                        mProgressBar1.setProgress((int)(mProgressBar1.getProgress()-textGLActuel[position]+textGL[position]*(0.25)));
-                        mProgressBar2.setProgress((int)(mProgressBar2.getProgress()-textGRActuel[position]+textGR[position]*(0.25)));
+                       // mProgressBar1.setProgress((int)(mProgressBar1.getProgress()-textGLActuel[position]+textGL[position]*(0.25)));
+                        //mProgressBar2.setProgress((int)(mProgressBar2.getProgress()-textGRActuel[position]+textGR[position]*(0.25)));
                         textGLActuel[position]=(textGL[position]*(0.25));
                         textGRActuel[position]=(textGR[position]*(0.25));
                         break;
                     case R.id.radioP_2:
-                        mProgressBar1.setProgress((int)(mProgressBar1.getProgress()-textGLActuel[position]+textGL[position]*(0.5)));
-                        mProgressBar2.setProgress((int)(mProgressBar2.getProgress()-textGRActuel[position]+textGR[position]*(0.5)));
+                        //mProgressBar1.setProgress((int)(mProgressBar1.getProgress()-textGLActuel[position]+textGL[position]*(0.5)));
+                        //mProgressBar2.setProgress((int)(mProgressBar2.getProgress()-textGRActuel[position]+textGR[position]*(0.5)));
                         textGLActuel[position]=(textGL[position]*(0.5));
                         textGRActuel[position]=(textGR[position]*(0.5));
                         break;
                     case R.id.radioP_3:
-                        mProgressBar1.setProgress((int)(mProgressBar1.getProgress()-textGLActuel[position]+textGL[position]*(0.75)));
-                        mProgressBar2.setProgress((int)(mProgressBar2.getProgress()-textGRActuel[position]+textGR[position]*(0.75)));
+                        //mProgressBar1.setProgress((int)(mProgressBar1.getProgress()-textGLActuel[position]+textGL[position]*(0.75)));
+                       // mProgressBar2.setProgress((int)(mProgressBar2.getProgress()-textGRActuel[position]+textGR[position]*(0.75)));
                         textGLActuel[position]=(textGL[position]*(0.75));
                         textGRActuel[position]=(textGR[position]*(0.75));
                         break;
                     case R.id.radioP_4:
-                        mProgressBar1.setProgress((int)(mProgressBar1.getProgress()-textGLActuel[position]+textGL[position]*(1)));
-                        mProgressBar2.setProgress((int)(mProgressBar2.getProgress()-textGRActuel[position]+textGR[position]*(1)));
+                        //mProgressBar1.setProgress((int)(mProgressBar1.getProgress()-textGLActuel[position]+textGL[position]*(1)));
+                        //mProgressBar2.setProgress((int)(mProgressBar2.getProgress()-textGRActuel[position]+textGR[position]*(1)));
                         textGLActuel[position]=(textGL[position]*(1));
                         textGRActuel[position]=(textGR[position]*(1));
                         break;
@@ -100,6 +191,7 @@ public class Customlistview extends ArrayAdapter<String>{
                     i++;
                 }
                 textViewGL.setText("Total de glucide lente:"+ sum+"g");
+                mProgressBar1.setProgress((int)(sum));
                 i = 0;
                 sum=0;
                 while(i < textGRActuel.length) {
@@ -108,6 +200,7 @@ public class Customlistview extends ArrayAdapter<String>{
                 }
 
                 textViewGR.setText("Total de glucide rapide:"+sum+"g");
+                mProgressBar2.setProgress((int)(sum));
             }
         });
 
