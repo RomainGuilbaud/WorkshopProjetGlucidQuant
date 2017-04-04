@@ -5,8 +5,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.ynov.android.gluciddiab.Protocole;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,6 +42,7 @@ public class ProtocoleGlucidesDbHelper extends SQLiteOpenHelper {
             sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + ProtocoleGlucidesContract.ProtocoleGlucidesEntry.TABLE_NAME);
             onCreate(sqLiteDatabase);
         }
+
     // Getting single contact
     public List<String> getProtocole(int id) {
         SQLiteDatabase db = this.getWritableDatabase();

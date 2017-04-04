@@ -6,9 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ProgressBar;
-import android.widget.RadioGroup;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import com.ynov.android.gluciddiab.R;

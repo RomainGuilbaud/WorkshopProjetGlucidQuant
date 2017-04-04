@@ -5,10 +5,12 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -23,9 +25,19 @@ public class RestoActivity extends AppCompatActivity{
     TextView restoTitle;
     TextView TestDb;
     Button btnTestDb;
+    CardView cvMcDo;
+    CardView cvKFC;
+
+    Button breakFast;
+    Button lunch;
+    Button snack;
+    Button meal;
 
     private SQLiteDatabase mDb;
     private Toolbar toolbar;
+
+    String MealTime;
+    String RestoChoice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,9 +47,63 @@ public class RestoActivity extends AppCompatActivity{
         toolbar = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
 
-        btnTestDb = (Button) findViewById(R.id.buttonTestDb);
+        MealTime = "";
 
-        btnTestDb.setOnClickListener(new View.OnClickListener()
+        //btnTestDb = (Button) findViewById(R.id.buttonTestDb);
+
+        cvMcDo = (CardView) findViewById(R.id.cardViewMcdo);
+        cvKFC = (CardView) findViewById(R.id.cardViewKfc);
+
+        cvMcDo.setOnClickListener(new View.OnClickListener()
+        {
+            Context context = RestoActivity.this;
+
+            Class destinationActivity = MenuActivity.class;
+
+
+
+            Intent startmenuActivityIntent = new Intent(context, destinationActivity);
+
+            public void onClick(View view)
+            {
+                //String MealTime = "matin";
+                if (!MealTime.equals("")) {
+
+                    RestoChoice = "McDo";
+                    Bundle extras = new Bundle();
+                    extras.putString("EXTRA_RESTO",RestoChoice);
+                    extras.putString("EXTRA_MEAL",MealTime);
+                    startmenuActivityIntent.putExtras(extras);
+                    startActivity(startmenuActivityIntent);
+                }else{Toast.makeText(RestoActivity.this, "Choisis d'abord ton repas", Toast.LENGTH_SHORT).show();}
+            }
+        });
+
+        cvKFC.setOnClickListener(new View.OnClickListener()
+        {
+            Context context = RestoActivity.this;
+
+            Class destinationActivity = MenuActivity.class;
+
+            Intent startmenuActivityIntent = new Intent(context, destinationActivity);
+
+            public void onClick(View view)
+            {
+
+                if (!MealTime.equals("")) {
+                    RestoChoice = "KFC";
+                    Bundle extras = new Bundle();
+                    extras.putString("EXTRA_RESTO",RestoChoice);
+                    extras.putString("EXTRA_MEAL",MealTime);
+                    startmenuActivityIntent.putExtras(extras);
+
+                    startActivity(startmenuActivityIntent);
+                }else{Toast.makeText(RestoActivity.this, "Choisis d'abord ton repas", Toast.LENGTH_SHORT).show();}
+
+            }
+        });
+
+/*        btnTestDb.setOnClickListener(new View.OnClickListener()
         {
             Context context = RestoActivity.this;
 
@@ -49,6 +115,61 @@ public class RestoActivity extends AppCompatActivity{
             {
                 startActivity(startmenuActivityIntent);
 
+            }
+        });*/
+
+        breakFast = (Button) findViewById(R.id.buttonBreakFast);
+        lunch = (Button) findViewById(R.id.buttonLunch);
+        snack = (Button) findViewById(R.id.buttonSnack);
+        meal = (Button) findViewById(R.id.buttonMeal);
+
+        breakFast.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                breakFast.setPressed(true);
+                lunch.setPressed(false);
+                snack.setPressed(false);
+                meal.setPressed(false);
+                MealTime = "matin";
+                return true;
+
+
+            }
+        });
+
+        lunch.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                breakFast.setPressed(false);
+                lunch.setPressed(true);
+                snack.setPressed(false);
+                meal.setPressed(false);
+                MealTime = "midi";
+                return true;
+            }
+        });
+
+        snack.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                breakFast.setPressed(false);
+                lunch.setPressed(false);
+                snack.setPressed(true);
+                meal.setPressed(false);
+                MealTime = "gouter";
+                return true;
+            }
+        });
+
+        meal.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                breakFast.setPressed(false);
+                lunch.setPressed(false);
+                snack.setPressed(false);
+                meal.setPressed(true);
+                MealTime = "soir";
+                return true;
             }
         });
 
