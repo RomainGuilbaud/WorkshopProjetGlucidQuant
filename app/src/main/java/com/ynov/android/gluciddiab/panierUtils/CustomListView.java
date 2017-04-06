@@ -12,21 +12,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.ynov.android.gluciddiab.R;
-//import com.ynov.android.gluciddiab.calculUtils.Panier;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.stream.*;
+
+//import com.ynov.android.gluciddiab.calculUtils.Panier;
 
 public class CustomListView extends ArrayAdapter<String>{
 
@@ -278,13 +273,13 @@ public class CustomListView extends ArrayAdapter<String>{
     }
 
     public double[] getGluActuelle(){
-       int i = 0;
+        int i = 0;
         double sum=0;
         while(i < textGLActuel.length) {
             sum += textGLActuel[i];
             i++;
         }
-         i = 0;
+        i = 0;
         double sum2=0;
         while(i < textGRActuel.length) {
             sum2 += textGRActuel[i];

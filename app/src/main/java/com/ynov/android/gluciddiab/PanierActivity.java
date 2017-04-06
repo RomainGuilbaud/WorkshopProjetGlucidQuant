@@ -4,11 +4,16 @@ package com.ynov.android.gluciddiab;
  * Created by admin on 02/04/17.
  */
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -38,6 +43,8 @@ public class PanierActivity extends AppCompatActivity {
     private RadioButton mRadio;
     private List<String> protocoles;
     private CustomListView adapter;
+
+    private Toolbar toolbar;
     /*String[] prenoms = new String[]{
             "Big Mac Maxi", "frite Maxi", "coca-cola", "sunday"
     };
@@ -52,6 +59,9 @@ public class PanierActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.panier);
+
+        toolbar = (Toolbar) findViewById(R.id.app_bar);
+        setSupportActionBar(toolbar);
 
         Intent intentThatStartedThisActivity = getIntent();
 
@@ -164,5 +174,34 @@ public class PanierActivity extends AppCompatActivity {
             mProgressBar2.getProgressDrawable().setColorFilter(Color.parseColor("#00A6FF"), PorterDuff.Mode.SRC_IN);
         }
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.item_settings:
+                //Toast.makeText(RestoActivity.this, "Protocole" , Toast.LENGTH_SHORT).show();
+
+                Context context = PanierActivity.this;
+
+                Class destinationActivity = ProtocoleActivity.class;
+
+                Intent startProtocoleActivityIntent = new Intent(context, destinationActivity);
+
+                startActivity(startProtocoleActivityIntent);
+
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+
 }
 
